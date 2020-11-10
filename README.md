@@ -1,1 +1,4 @@
-# isl29125_circuitpy
+# ISL29125 for CircuitPython
+
+Tested and working with:
+-QT Py
