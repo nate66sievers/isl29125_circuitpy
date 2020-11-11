@@ -14,14 +14,15 @@ devices = [hex(x) for x in i2c.scan()]
 result = bytearray(6)
 
 # ISL29125 address, 0x44(68)
-# Select configuation-1register, 0x01(01)
-# 0x0D(13), Operation: RGB, Range: 10000 lux, Res: 16 Bits
+# Select configuation-1register: 0x01
+# Send mode 0x0D 001101: RGB, 1000 lux, Res 16 bit
 i2c.writeto(0x44, bytes([0x01,0x0D]))
 
-loop = 20
+loop = 3
 for x in range(loop):
     # Read RGB data from sensor
     time.sleep(0.5)
+    # Read register from 0x09-0x0E to result)
     i2c.writeto_then_readfrom(0x44, bytes([0x09]),result)
 
     # Convert the data
